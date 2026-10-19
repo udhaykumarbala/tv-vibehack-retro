@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/playerRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000">
+
+    <!-- GLRetroView is added here in code, at index 0. -->
+
+    <!-- Covers the boot frame until the saved state is restored. -->
+    <FrameLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF000000">
+
+        <TextView
+            android:id="@+id/loadingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#FFFFFFFF"
+            android:textSize="36sp"
+            android:fontFamily="@font/outfit"
+            android:fontVariationSettings="'wght' 300" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/osd"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="36dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:gravity="center"
+        android:background="@drawable/osd_bg"
+        android:textColor="#FFFFFFFF"
+        android:textSize="14sp"
+        android:fontFamily="@font/outfit"
+        android:fontVariationSettings="'wght' 500"
+        android:alpha="0" />
+
+    <FrameLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A6000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/glass_panel"
+            android:orientation="vertical"
+            android:padding="22dp">
+
+            <TextView
+                android:id="@+id/menuTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFFFF"
+                android:textSize="24sp"
+                android:fontFamily="@font/outfit"
+                android:fontVariationSettings="'wght' 300"
+                android:singleLine="true"
+                android:ellipsize="end" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/menu_hint"
+                android:textColor="#80FFFFFF"
+                android:textSize="12sp"
+                android:fontFamily="@font/outfit" />
+
+            <TextView android:id="@+id/menuResume" style="@style/MenuItem" android:text="@string/menu_resume" />
+            <TextView android:id="@+id/menuSave" style="@style/MenuItem" android:text="@string/menu_save" />
+            <TextView android:id="@+id/menuLoad" style="@style/MenuItem" android:text="@string/menu_load" />
+            <TextView android:id="@+id/menuReset" style="@style/MenuItem" android:text="@string/menu_reset" />
+            <TextView android:id="@+id/menuAspect" style="@style/MenuItem" />
+            <TextView android:id="@+id/menuFilter" style="@style/MenuItem" />
+            <TextView android:id="@+id/menuQuit" style="@style/MenuItem" android:text="@string/menu_quit" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

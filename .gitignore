@@ -1,0 +1,29 @@
+# Build outputs
+.gradle/
+build/
+app/build/
+app/.gradle/
+app/local.properties
+app/dist/
+*.apk
+*.aab
+.idea/
+*.iml
+.DS_Store
+
+# Libretro cores are fetched by app/cores/fetch-cores.sh, never committed
+app/src/main/jniLibs/
+
+# ROM files are never committed
+catalog/roms/
+*.nes
+*.zip
+
+# Signing material is never committed: the debug key stays local, the release key lives outside the repo
+app/keystore/
+*.keystore
+*.jks
+keystore.properties
+
+# local build helpers, not published
+app/build-on-*.sh

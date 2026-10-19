@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000">
+
+    <!-- Ambient glow in the colour of the focused game. -->
+    <View
+        android:id="@+id/ambient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0" />
+
+    <!-- Hero art for the focused game (4:3). -->
+    <ImageView
+        android:id="@+id/heroArt"
+        android:layout_width="320dp"
+        android:layout_height="240dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/tile_bg"
+        android:scaleType="centerCrop"
+        android:alpha="0"
+        android:contentDescription="@null" />
+
+    <LinearLayout
+        android:id="@+id/heroText"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="44dp"
+        android:orientation="vertical"
+        android:alpha="0">
+
+        <TextView
+            android:id="@+id/heroKicker"
+            style="@style/Kicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/heroTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="#FFFFFFFF"
+            android:textSize="42sp"
+            android:fontFamily="@font/outfit"
+            android:fontVariationSettings="'wght' 300"
+            android:letterSpacing="-0.02"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/heroMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#BFFFFFFF"
+            android:textSize="15sp"
+            android:fontFamily="@font/outfit"
+            android:fontVariationSettings="'wght' 400"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/heroDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="#99FFFFFF"
+            android:textSize="14sp"
+            android:fontFamily="@font/outfit"
+            android:fontVariationSettings="'wght' 400"
+            android:lineSpacingMultiplier="1.15"
+            android:maxLines="3"
+            android:ellipsize="end" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/KeyCap"
+                android:text="A" />
+
+            <TextView
+                android:id="@+id/hintPrimary"
+                style="@style/HintLabel" />
+
+            <TextView
+                style="@style/KeyCap"
+                android:text="Y" />
+
+            <TextView
+                android:id="@+id/hintFavourite"
+                style="@style/HintLabel" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/heroStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#FFFF8A80"
+            android:textSize="13sp"
+            android:fontFamily="@font/outfit"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Shelves. The viewport clips; the shelf column inside slides up and down so the focused shelf sits at the top. -->
+    <FrameLayout
+        android:id="@+id/shelfViewport"
+        android:layout_width="match_parent"
+        android:layout_height="252dp"
+        android:layout_gravity="bottom"
+        android:clipChildren="true">
+
+        <LinearLayout
+            android:id="@+id/shelves"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/empty"
+        android:layout_width="520dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_title"
+            android:textColor="#FFFFFFFF"
+            android:textSize="34sp"
+            android:fontFamily="@font/outfit"
+            android:fontVariationSettings="'wght' 300" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/empty_body"
+            android:textColor="#99FFFFFF"
+            android:textSize="15sp"
+            android:fontFamily="@font/outfit"
+            android:lineSpacingMultiplier="1.2" />
+    </LinearLayout>
+
+    <!-- The single floating glass highlight that springs between tiles. -->
+    <io.github.udhaykumarbala.retro.GlassView
+        android:id="@+id/glass"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:alpha="0"
+        android:importantForAccessibility="no" />
+</FrameLayout>

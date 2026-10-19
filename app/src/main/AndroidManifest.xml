@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-feature android:name="android.software.leanback" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.gamepad" android:required="false" />
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+
+    <!-- Catalog downloads (free homebrew fetched from the authors' own pages) and cover art. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- User ROM dumps in /sdcard/Roms/NES. -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:banner="@drawable/banner"
+        android:theme="@style/Theme.Retro"
+        android:allowBackup="false"
+        android:requestLegacyExternalStorage="true"
+        android:largeHeap="false">
+
+        <activity
+            android:name=".LibraryActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden|navigation|uiMode"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+            <!-- Module card for the tv-vibehack launcher: declared on the same exported
+                 LEANBACK_LAUNCHER activity, described by res/xml/module_card.xml. -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.gathin.tvhome.category.DOCK_CARD" />
+            </intent-filter>
+            <meta-data
+                android:name="com.gathin.tvhome.card"
+                android:resource="@xml/module_card" />
+        </activity>
+
+        <!-- The emulator runs in its own process so every game starts from a clean native state
+             and quitting frees all of its memory. noHistory: leaving the game (Home, another app)
+             autosaves and ends it; the next launch resumes from that state. -->
+        <activity
+            android:name=".PlayerActivity"
+            android:exported="false"
+            android:process=":player"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden|navigation|uiMode"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Retro.Player" />
+    </application>
+</manifest>
